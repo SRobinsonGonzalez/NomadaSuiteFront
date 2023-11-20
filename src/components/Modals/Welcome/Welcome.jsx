@@ -14,7 +14,7 @@ const Welcome = ({ handleWelcomeClick }) => {
     <div>
       <div className={style.modalBox}>
         <hr />
-        <img className={style.icon} src='../../src/assets/image/favicon.png' />
+        <img className={style.icon} src='https://nomadasuitefront-production-cf39.up.railway.app/assets/logo-68e4d767.png' />
         <p className={style.welcomeText}>Bienvenido a NómadaSuite</p>
         <p>Descubre lugares donde quedarte y trabajar desde cualquier parte del mundo.</p>
 
