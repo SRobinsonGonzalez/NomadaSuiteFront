@@ -30,6 +30,9 @@ const AccommodationDetail = () => {
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [total, setTotal] = useState();
 
+  const coordinates = AccommodationById?.idLocation?.coordinates;
+  const [lat, lng] = coordinates ? coordinates.split(',') : [undefined, undefined];
+
   useEffect(() => {
     dispatch(getAccommodationById(id));
     return () => {
@@ -370,8 +373,8 @@ const AccommodationDetail = () => {
                 <GoogleMap
                   mapContainerStyle={mapStyle}
                   center={{
-                    lat: -34.60197580899001,
-                    lng: -58.387432843046234
+                    lat: lat*1,
+                    lng: lng*1
                   }}
                   id="map"
                   zoom={14}
