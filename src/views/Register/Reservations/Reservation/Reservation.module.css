@@ -1,0 +1,77 @@
+.reservationBox {
+  display: flex;
+  justify-content: center;
+}
+
+.columnsBox {
+  width: 65%;
+}
+
+.returnReservation {
+  display: flex;
+  align-items: center;
+}
+
+.returnReservation Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.Button {
+  background-color: orange;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.Button:hover {
+  background-color: blue;
+  color: white;
+}
+
+.detailContent {
+  padding: 5%;
+}
+
+.detailTitle {
+  font-size: x-large;
+  font-weight: 500;
+  padding-bottom: 1rem;
+}
+
+.pSubmit {
+  font-size: 14px;
+}
+
+.checkout :global(.ant-anchor) {
+  padding: 2rem 0;
+}
+
+.checkout :global(.ant-anchor::before) {
+  display: none;
+}
+
+.fechas {
+  padding-bottom: 1rem;
+}
+
+.fechas h5 {
+  font-size: medium;
+  font-weight: 500;
+  padding: .2rem;
+}
+
+.habitaciones h5 {
+  font-size: medium;
+  font-weight: 500;
+  padding: .2rem;
+}
+
+.buttonStyle {
+  padding-top: 1rem;
+}
+
+.accommodation {
+  font-size: larger;
+}

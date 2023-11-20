@@ -1,0 +1,49 @@
+.welcome {
+  text-align: center;
+}
+
+.emailField Input {
+  margin-top: .5rem;
+  border-radius: 4px;
+  height: 3rem;
+}
+
+.passwordField Input {
+  height: 2.4rem;
+}
+
+.span {
+  display: table;
+  margin: -25px auto 0;
+  padding: 0 8px;
+  background: white;
+  position: relative;
+  top: 11px;
+}
+
+.icon {
+  position: absolute;
+  top: 17px;
+}
+
+.googleBtn {
+  padding-top: 2rem;
+  padding-bottom: .5rem;
+}
+
+.googleBtn Button {
+  border-radius: 4px;
+}
+
+.submitBtn {
+  padding-top: .5rem;
+}
+
+.submitBtn Button {
+  border-radius: 4px;
+}
+
+.textRegister p {
+  text-align: center;
+  padding-bottom: .5rem;
+}

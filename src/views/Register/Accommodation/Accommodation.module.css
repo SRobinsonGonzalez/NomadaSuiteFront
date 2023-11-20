@@ -1,0 +1,37 @@
+.Accommodation {
+    display: flex;
+    justify-content: center;
+    background-color: white
+}
+
+.accommodationBox {
+    background-color: white;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    /* box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.02), -10px 0px 5px -5px rgba(0, 0, 0, 0.02); */
+    width: 70%;
+}
+
+.services {
+    display: flex;
+    width: 100%;
+}
+
+.Accommodation h1 {
+    font-weight: 700;
+    padding-bottom: 1.5rem;
+}
+
+.map {
+    position: relative;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.Accommodation hr {
+    padding-bottom: 1.5rem;
+}

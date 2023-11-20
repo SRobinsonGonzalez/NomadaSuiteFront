@@ -1,0 +1,50 @@
+.photoContainer {
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+  transition: .4s ease all;
+}
+
+.photoContainer.show {
+  visibility: visible;
+  height: 20.5rem;
+  opacity: 1;
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.formBox h3 {
+  font-size: .9rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.formBox h1 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.formBox p, .textAfter {
+  text-align: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.upload {
+  padding-top: 1.5rem;
+}
+
+.upload :global(.ant-upload-list) {
+  text-align: center;
+}

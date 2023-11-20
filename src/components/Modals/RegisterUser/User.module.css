@@ -1,0 +1,62 @@
+.nameField Input {
+  border-radius: 4px;
+  height: 3rem;
+}
+
+.lastnameField Input {
+  border-radius: 4px;
+  height: 3rem;
+}
+
+.datePicker {
+  height: 3rem;
+  width: 100%;
+}
+
+.ageField p,
+.notification p {
+  font-size: .8rem;
+}
+
+.notification {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1.5rem;
+}
+
+.notification button[type='button'] {
+  margin-top: 0;
+  margin-left: 1rem;
+}
+
+.emailField Input {
+  border-radius: 4px;
+  height: 3rem;
+}
+
+.passwordField Input {
+  height: 2.4rem;
+}
+
+.submitBtn Button {
+  border-radius: 4px;
+  height: 3rem;
+}
+
+.user-slide-short {
+  max-height: 50vh;
+}
+
+.icon {
+  position: absolute;
+  top: 17px;
+}
+
+.googleBtn {
+  padding-top: 1.5rem;
+}
+
+.googleBtn Button {
+  border-radius: 4px;
+}

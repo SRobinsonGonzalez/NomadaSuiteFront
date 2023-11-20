@@ -1,0 +1,71 @@
+.checkout {
+    display: flex;
+    justify-content: center;
+}
+
+.columnsBox {
+    width: 60%;
+}
+
+.columnsBox h1 {
+    padding-top: 3rem;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.boxes {
+    border: 2px rgba(0, 0, 0, 0.100) solid;
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.boxesRight {
+    border: 2px rgba(0, 0, 0, 0.100) solid;
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.boxes div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgLogo {
+    width: 30%;
+    padding-bottom: 2rem;
+}
+
+.img {
+    height: 11rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.boxes h2,
+.boxesRight h2 {
+    font-size: 22px;
+    font-weight: 400;
+    padding-bottom: 1.5rem;
+}
+
+.boxes h3,
+.boxesRight h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.boxes p,
+.boxesRight p {
+    font-size: 17px;
+}
+
+.boxes h6,
+.boxesRight h6 {
+    font-size: 12px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}

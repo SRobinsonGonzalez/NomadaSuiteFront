@@ -1,0 +1,12 @@
+.loadMoreBtn {
+    background-color: #231ca7!important;
+    color: #ffffff;
+    display: table;
+    margin: 0 auto 4rem;
+}
+.loadMoreBtn span {
+    color: #ffffff;
+}
+.loadMoreBtn:hover span {
+    color: #ffffff;
+}

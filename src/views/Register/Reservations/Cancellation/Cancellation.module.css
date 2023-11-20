@@ -1,0 +1,39 @@
+.cancellation {
+    display: flex;
+    justify-content: center;
+}
+
+.cancellationBox {
+    width: 35%;
+    padding-bottom: 3rem;
+}
+
+.cancellationBox h6{
+    padding-top: 3rem;
+    font-size: 12px;
+}
+
+.cancellationBox h1{
+    font-size: 35px;
+    font-weight: 500;
+    padding-bottom: .5rem;
+}
+
+.cancellationBox h2{
+    font-size: 22px;
+    font-weight: 500;
+    padding-top: 1.5rem;
+    padding-bottom: .5rem;
+}
+
+.cancellationBox h3{
+    font-size: 22px;
+    font-weight: 500;
+    padding-top: 2rem;
+    padding-bottom: .5rem;
+}
+
+.cancellation p {
+    padding-bottom: .5rem;
+    font-size: 15.5px;
+}

@@ -1,0 +1,12 @@
+.secundaryFilters {
+    height: 0;
+    opacity: 0;
+    transition: 0.4s ease all;
+    visibility: hidden;
+}
+.secundaryFilters.show {
+    margin-top: 1rem;
+    height: 2rem;
+    opacity: 1;
+    visibility: visible;
+}

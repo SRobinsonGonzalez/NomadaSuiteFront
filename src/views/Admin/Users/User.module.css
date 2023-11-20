@@ -1,0 +1,14 @@
+.toggleAA {
+  background-color: green;
+}
+
+.toggle[aria-checked=false] :global(.ant-switch-inner) {
+  background-color: #9e9e9e;
+}
+
+:global(.ant-pagination .ant-pagination-disabled .ant-pagination-item-link),
+:global(.ant-pagination .ant-pagination-disabled:hover .ant-pagination-item-link),
+:global(.ant-pagination .ant-pagination-prev .ant-pagination-item-link),
+:global(.ant-pagination .ant-pagination-next .ant-pagination-item-link) {
+  margin: 0!important;
+}

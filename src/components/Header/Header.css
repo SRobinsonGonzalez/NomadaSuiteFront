@@ -1,0 +1,47 @@
+.modalRegister .ant-modal-title {
+  text-align: center;
+}
+
+nav {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.imgProfileContainer {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+}
+
+.imgProfileContainer img {
+  border-radius: 50%;
+}
+
+.rightHeader {
+  opacity: 0;
+  animation: zoom .3s linear forwards; 
+  min-width: 15rem;
+}
+
+.imgProfile {
+  animation: zoom .3s linear forwards; 
+  opacity: 0;
+}
+
+.adminPanelLink {
+  padding: 5px 10px;
+  color: white; /* Cambiado de text-color a color */
+  text-decoration: none; /* Para quitar el subrayado del enlace */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes zoom {
+  0%	{ 
+    opacity: 0;
+    transform: scale(0.8); 
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1); 
+  }
+}

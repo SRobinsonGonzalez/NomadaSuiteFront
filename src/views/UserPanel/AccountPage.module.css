@@ -1,0 +1,16 @@
+.userinfo {
+  height: 2.5rem;
+  width: 300px;
+}
+
+.activeLabel {
+  
+   /* Cambia el color del texto a blanco para mayor contraste */
+  border-radius: 8px;
+  border: 2px solid blue;
+}
+
+.inactiveLabel {
+  
+  color: grey; /* Establece el color del texto en blanco cuando no está activa */
+}

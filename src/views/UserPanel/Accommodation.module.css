@@ -1,0 +1,23 @@
+.buttonContainer {
+    text-align: center; /* Alinea el contenido a la izquierda */
+    margin-top: 30px; /* Ajusta el margen superior según sea necesario */
+    margin-left: 150px;
+  }
+
+  .delButton{
+    margin-Right: 10px;
+    margin-left: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .redButton {
+    background-color: red;
+    border-color: red;
+  }
+
+  .accButton{
+    text-align: center;
+    font-weight: bold;
+    margin: 'auto',
+  }
