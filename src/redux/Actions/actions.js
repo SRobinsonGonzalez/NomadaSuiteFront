@@ -1,6 +1,6 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
-import { GET_ACCOMMODATIONS, GET_ACCOMMODATION_BY_ID, GET_SERVICES, GET_NEXT_ACCOMMODATIONS, ORDER_BY_RATING, GET_FILTERED_ACCOMMODATION, CLEAR_DETAIL, GET_COUNTRIES, GET_CITIES, GET_LOCATIONS, LOGIN_USER, LOGIN_GOOGLE, REGISTER_USER, GET_USER_DATA, LOG_OUT, SET_RESERVATION_DATA, CLEAR_DETAIL_TO_RESERVATION, UPDATE_USER_INFO, GET_RESERVATION_BY_ID, GET_ACTIVE_ACCOMMODATION, GET_ACCOMMODATION_PENDING_CONFIRMATION, GET_DISABLED_ACCOMMODATION, GET_ALL_ACCOMMODATION, GET_ACCOMMODATION_PERCENTAGE, DELETE_ACCOMMODATION, GET_ACCOMMODATION_BY_ID_A, UPDATE_ACCOMMODATION, GET_ALL_USERS, GET_USERS_ACTIVES, GET_USERS_ACTIVES_FALSE, GET_USER_BY_ID, LOGIN_USER_A, DELETE_USER, UPDATE_USER, GET_ACTIVE_REVIEWS, GET_REVIEWS_PENDING_CONFIRMATION, GET_REVIEWS_DISABLED, GET_USER_BY_ID_CHECKOUT } from "./actions-types";
+import { GET_ACCOMMODATIONS, GET_ACCOMMODATION_BY_ID, GET_SERVICES, GET_NEXT_ACCOMMODATIONS, ORDER_BY_RATING, GET_FILTERED_ACCOMMODATION, CLEAR_DETAIL, GET_COUNTRIES, GET_CITIES, GET_LOCATIONS, LOGIN_USER, LOGIN_GOOGLE, REGISTER_USER, GET_USER_DATA, LOG_OUT, SET_RESERVATION_DATA, CLEAR_DETAIL_TO_RESERVATION, UPDATE_USER_INFO, GET_RESERVATION_BY_ID, GET_ACTIVE_ACCOMMODATION, GET_ACCOMMODATION_PENDING_CONFIRMATION, GET_DISABLED_ACCOMMODATION, GET_ALL_ACCOMMODATION, GET_ACCOMMODATION_PERCENTAGE, DELETE_ACCOMMODATION, GET_ACCOMMODATION_BY_ID_A, UPDATE_ACCOMMODATION, GET_ALL_USERS, GET_USERS_ACTIVES, GET_USERS_ACTIVES_FALSE, GET_USER_BY_ID, LOGIN_USER_A, DELETE_USER, UPDATE_USER, GET_ACTIVE_REVIEWS, GET_REVIEWS_PENDING_CONFIRMATION, GET_REVIEWS_DISABLED, GET_USER_BY_ID_CHECKOUT, UPDATE_REVIEWS } from "./actions-types";
 
 const getAccommodations = () => {
   const endpoint = "/accommodation/";
@@ -417,11 +417,11 @@ const getAccommodationById_A = (id) => {
   };
 };
 
-const updateAccommodation_A = (id, formDataToSend) => {
+const updateAccommodation_A = (id, dataToSend) => {
   const endpoint = `/accommodation/${id}`;
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(endpoint, formDataToSend, {
+      const { data } = await axios.put(endpoint, dataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         }
@@ -442,6 +442,7 @@ const getAllUers_A = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
+      console.log(data);
       dispatch({
         type: GET_ALL_USERS,
         payload: data,
@@ -588,6 +589,21 @@ const getReviewsDisabled_A = () => {
   };
 };
 
+const updateReview_A = (id) => {
+  const endpoint = `/reviews/update/${id}`;
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.out(endpoint);
+      dispatch({
+        type: UPDATE_REVIEWS,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error.response.data.error);
+    }
+  };
+};
+
 export {
   getAccommodations,
   getAccommodationById,
@@ -626,5 +642,6 @@ export {
   updateUser_A,
   getActiveReviews_A,
   getReviewsPendingConfirmation_A,
-  getReviewsDisabled_A
+  getReviewsDisabled_A,
+  updateReview_A
 }

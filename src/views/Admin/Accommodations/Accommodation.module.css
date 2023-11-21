@@ -1,0 +1,3 @@
+.toggle[aria-checked=false] :global(.ant-switch-inner) {
+  background-color: #9e9e9e;
+}

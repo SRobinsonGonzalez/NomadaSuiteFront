@@ -12,3 +12,7 @@
 :global(.ant-pagination .ant-pagination-next .ant-pagination-item-link) {
   margin: 0!important;
 }
+
+:global(.ant-pro-card) {
+  height: auto!important;
+}

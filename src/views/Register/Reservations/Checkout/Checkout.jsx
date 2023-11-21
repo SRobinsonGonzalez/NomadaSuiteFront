@@ -64,7 +64,7 @@ const Checkout = () => {
             <div className={style.boxes}>
               <div>
                 <h2>{name}</h2>
-                <img className={style.imgLogo} src="../../../src/assets/image/logo.png" />
+                <img className={style.imgLogo} src="https://nomadasuitefront-production-cf39.up.railway.app/assets/logo-68e4d767.png" />
               </div>
               <h3>{nights} noches en {name}</h3>
               <Divider />

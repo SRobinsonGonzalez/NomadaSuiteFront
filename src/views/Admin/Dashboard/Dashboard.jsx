@@ -8,7 +8,6 @@ import RatingBarChart from './RatingBarChart';
 const DashboardWithCharts = () => {
   return (
     <>
-      <div>Dashboard</div>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={12}>
           <Card title="Reservaciones hechas por mes" style={{ marginBottom: 16 }}>

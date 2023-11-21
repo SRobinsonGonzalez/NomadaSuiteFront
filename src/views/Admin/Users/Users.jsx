@@ -1,5 +1,6 @@
 import { Button, Flex, Space, Table, Tag, notification, Input, Image, Tooltip, Switch, Modal, Form, Upload } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import ImgCrop from 'antd-img-crop';
+import { useEffect, useRef, useState } from 'react';
 import Highlighter from "react-highlight-words";
 import { FaCircleUser } from "react-icons/fa6";
 import userStyles from "./User.module.css";
@@ -11,17 +12,38 @@ import {
 } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser_A, getAllUers_A, updateUser_A } from '../../../redux/Actions/actions';
+import axios from 'axios';
 
 const Users = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const [data, setData] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reloadTable, setReloadTable] = useState(false);
+  const [fileList, setFileList] = useState([]);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [currentUserId, setCurrentUserId] = useState('');
+  const [editUser, setEditUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
   const users = useSelector((state) => state.allUsers_A);
   const searchInput = useRef(null);
   const dispatch = useDispatch();
 
-  const showModal = () => {
+  const showModal = (userId, userFirstName, userLastName, userEmail, userImage) => {
+    setCurrentUserId(userId);
+    setEditUser({ ...editUser, firstName: userFirstName, lastName: userLastName,  email: userEmail });
+    setFileList([
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url: userImage,
+      },
+    ])
     setIsModalOpen(true);
   };
   const handleOk = () => {
@@ -219,6 +241,63 @@ const Users = () => {
     );
   };
 
+  const beforeUpload = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setFileList(() => [{ url: reader.result, originFileObj: file }]);
+    };
+    return false;
+  };
+
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+
+  const getBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+  };
+
+  const handleFormSubmit = async () => {
+    const formDataToSend = new FormData();
+    try {
+      formDataToSend.append('images', fileList[0].originFileObj);
+      formDataToSend.append('firstName', editUser.firstName);
+      formDataToSend.append('lastName', editUser.lastName);
+      formDataToSend.append('email', editUser.email);
+      await axios.put(`/user/update/${currentUserId}`, formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      notification.success({
+        message: '¡Excelente!',
+        description: 'El usuario fue actualizado con éxito.',
+        placement: 'bottomRight'
+      });
+      setReloadTable(!reloadTable);
+    } catch (error) {
+      notification.error({
+        message: 'Error',
+        description: `Lo sentimos, no se pudo actualizar el usuario.`,
+        placement: 'bottomRight'
+      });
+    }
+    setIsModalOpen(false);
+  }
+
   useEffect(() => {
     dispatch(getAllUers_A());
     const dataColumns = [];
@@ -226,6 +305,10 @@ const Users = () => {
       users.reverse().map((user, index) => {
         const tags = [];
         const userId = user._id;
+        const userFirstName = user.firstName;
+        const userLastName = user.lastName;
+        const userEmail = user.email;
+        const userImage = user.profileImage;
         if(user.isActive) {
           tags.push("Activo")
         }
@@ -238,7 +321,7 @@ const Users = () => {
         dataColumns.push({
           key: index,
           avatar:
-          user.profileImage ?
+          userImage ?
             <Image
               width={30}
               style={{ borderRadius: "50%" }}
@@ -246,52 +329,79 @@ const Users = () => {
             />
           :
           <FaCircleUser style={{ fontSize: "30px", color: "#d3ceee" }}/>,
-          name: user.firstName + " " + user.lastName,
-          email: user.email,
+          name: userFirstName + " " + userLastName,
+          email: userEmail,
           admin: <Switch className={userStyles.toggle} defaultChecked={user.isAdmin} onChange={(checked) => onChangeAdmin(checked, userId)} />,
           active: <Switch className={userStyles.toggle} defaultChecked={user.isActive} onChange={(checked) => onChangeActive(checked, userId)} />,
           tags: tags,
           action: 
           <Space size="middle">
-            <a onClick={showModal}><EditOutlined /></a>
+            <a onClick={() => showModal(userId, userFirstName, userLastName, userEmail, userImage)}><EditOutlined /></a>
             <Tooltip title="El usuario se eliminará de manera definitiva">
               <DeleteOutlined onClick={onDelete}/>
             </Tooltip>
           </Space>
         })
       })
-
     }
     setData(dataColumns);
   }, [users])
+  
   return (
-    <>
-      <Flex justify='end' style={{ marginBottom: "1rem"}}>
+    <div className={userStyles.userContainer}>
+      {/* <Flex justify='end' style={{ marginBottom: "1rem"}}>
         <Button><PlusOutlined /> Añadir usuario</Button>
-      </Flex>
-      <Table columns={columns} dataSource={data} />
+      </Flex> */}
+      <Table columns={columns} dataSource={data} className={userStyles.tableUser}/>
       <Modal title="Editar Usuario" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
-          Canceler
+          Cancelar
         </Button>,
-        <Button key="submit" type="primary" onClick={handleOk}>
-          Guardar
+        <Button key="submit" type="primary" onClick={handleFormSubmit}>
+          Actualizar
         </Button>
       ]}>
-        <Form>
-          <Form.Item name="image" label="Imagen"> 
-            
+        <Form layout="horizontal">
+          <Form.Item
+            name="image"
+            valuePropName="fileList"
+            label="Imagen de perfil"
+          >
+            <ImgCrop rotationSlider>
+              <Upload
+                accept="image/*"
+                beforeUpload={beforeUpload}
+                fileList={fileList}
+                listType="picture-circle"
+                onChange={onChange}
+                type="file"
+              >
+                {fileList.length < 1 && '+ Upload'}
+              </Upload>
+            </ImgCrop>
           </Form.Item>
-          <Form.Item name="userName" label="Nombre"> 
-            <Input/>
+          <Form.Item label="Nombres">
+            <Input
+              value={editUser.firstName}
+              onChange={(e) => setEditUser({ ...editUser, firstName: e.target.value })}
+            />
           </Form.Item>
-          <Form.Item name="email" label="Email"> 
-            <Input/>
+          <Form.Item label="Apellidos"> 
+            <Input
+              value={editUser.lastName}
+              onChange={(e) => setEditUser({ ...editUser, lastName: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Email"> 
+            <Input
+              value={editUser.email}
+              onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
+            />
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </div>
   )
 }
 
